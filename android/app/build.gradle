@@ -13,14 +13,22 @@ if (localPropertiesFile.exists()) {
     }
 }
 
-def dartDefines = project.property('dart-defines')
-        .split(',')
-        .collect { new String(it.decodeBase64(), 'UTF-8') }
-        .findAll { it.startsWith('APP_') }
-        .collectEntries {
-            def pair = it.split('=')
-            [(pair.first()): pair.last()]
-        }
+def dartDefines = [
+        APP_FLAVOR: "dev",
+        APP_NAME: "same define-dev",
+        APP_WEB_LINK: "https://ho-doan.github.io",
+        APP_ID_SUFFIX: "dev"
+]
+if (project.hasProperty('dart-defines')) {
+    dartDefines = project.property('dart-defines')
+            .split(',')
+            .collect { new String(it.decodeBase64(), 'UTF-8') }
+            .findAll { it.startsWith('APP_') }
+            .collectEntries {
+                def pair = it.split('=')
+                [(pair.first()): pair.last()]
+            }
+}
 
 def flutterVersionCode = localProperties.getProperty("flutter.versionCode")
 if (flutterVersionCode == null) {
@@ -47,10 +55,16 @@ android {
         applicationId = "com.example.same_define"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
-        minSdk = flutter.minSdkVersion
+        minSdk = 21
         targetSdk = flutter.targetSdkVersion
         versionCode = flutterVersionCode.toInteger()
         versionName = flutterVersionName
+
+        //#region define res
+        resValue "string", "appName", dartDefines.APP_NAME
+        resValue "string", "webLink", dartDefines.APP_WEB_LINK
+        //#endregion
+
     }
 
     buildTypes {
