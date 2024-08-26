@@ -1,0 +1,4 @@
+APP_FLAVOR=dev
+APP_NAME=same define-dev
+APP_ID_SUFFIX=dev
+FLUTTER_WEB_CANVASKIT_URL=https://www.gstatic.com/flutter-canvaskit/edd8546116457bdf1c5bdfb13ecb9463d2bb5ed4/
