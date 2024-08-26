@@ -1,3 +1,4 @@
 APP_FLAVOR=dev
 APP_NAME=same define-dev
+APP_WEB_LINK=https://ho-doan.github.io
 APP_ID_SUFFIX=dev

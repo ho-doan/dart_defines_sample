@@ -4,7 +4,7 @@ import UIKit
 @UIApplicationMain
 @objc class AppDelegate: FlutterAppDelegate {
     
-    var dartDefinesDictionary = [String:String]()
+    let env = Env()
     
     override func application(
         _ application: UIApplication,
@@ -12,22 +12,8 @@ import UIKit
     ) -> Bool {
         GeneratedPluginRegistrant.register(with: self)
         
-        decodeDartDefines()
-        
-        if let filename = dartDefinesDictionary["APP_NAME"] {
-            print("dart define \(filename)")
-        } else {
-            print("dart define not found")
-        }
+        env.decodeDartDefines()
+        print("dart define \(env.appName)")
         return super.application(application, didFinishLaunchingWithOptions: launchOptions)
-    }
-    
-    func decodeDartDefines() {
-        let dartDefinesString = Bundle.main.object(forInfoDictionaryKey: "DART_DEFINES") as! String
-        for definedValue in dartDefinesString.components(separatedBy: ",") {
-            let decoded = String(data: Data(base64Encoded: definedValue)!, encoding: .utf8)!
-            let values = decoded.components(separatedBy: "=")
-            dartDefinesDictionary[values[0]] = values[1]
-        }
     }
 }
