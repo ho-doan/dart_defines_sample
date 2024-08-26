@@ -1,11 +1,3 @@
-enum Env {
-  appName(String.fromEnvironment('APP_NAME')),
-  appFlavor(String.fromEnvironment('APP_FLAVOR')),
-  appWebLink(String.fromEnvironment('APP_WEB_LINK')),
-  appSuffix(String.fromEnvironment('APP_ID_SUFFIX'));
-
-  const Env(this.value);
-  final String value;
-}
-
-const env = [];
+export 'i_config.dart';
+export 'env_enum.dart';
+export 'config.dart' if (dart.library.js) 'config.stub.dart';

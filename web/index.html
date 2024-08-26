@@ -31,8 +31,20 @@
 
   <title>same_define</title>
   <link rel="manifest" href="manifest.json">
+  <script>
+
+    //Here appName is undefined
+    console.log(`appName: ${window.appName}`);
+
+    document.addEventListener("dart_loaded", function (){
+      //Here appName is defined
+      console.log("dart_loaded event");
+      console.log(`appName: ${window.appName}`);
+    });
+  </script>
 </head>
 <body>
   <script src="flutter_bootstrap.js" async></script>
+  <!-- <script src="flutter_bootstrap.js" defer></script> -->
 </body>
 </html>
