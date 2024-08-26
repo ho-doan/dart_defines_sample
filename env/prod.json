@@ -1,5 +1,6 @@
 {
     "APP_FLAVOR": "prod",
     "APP_NAME": "same define",
+    "APP_WEB_LINK": "https://ho-doan.prod.github.io",
     "APP_ID_SUFFIX": "prod"
 }

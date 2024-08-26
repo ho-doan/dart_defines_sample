@@ -1,5 +1,6 @@
 {
     "APP_FLAVOR": "stg",
     "APP_NAME": "same define-stg",
+    "APP_WEB_LINK": "https://ho-doan.stg.github.io",
     "APP_ID_SUFFIX": "stg"
 }

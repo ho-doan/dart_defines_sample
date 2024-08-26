@@ -11,9 +11,11 @@ IFS=',' read -r -a dart_defines <<< "$DART_DEFINES"
 for index in "${!dart_defines[@]}"
 do
   dart_define=$(decode "${dart_defines[$index]}")
-  IFS='=' read -r -a key_value <<< "$dart_define"
-  export ${key_value[0]}=${key_value[1]}
-  echo "${key_value[0]}=${key_value[1]}" >> ${export_file}
+  if [[ $dart_define =~ ^APP_ ]]; then
+    IFS='=' read -r -a key_value <<< "$dart_define"
+    export ${key_value[0]}=${key_value[1]}
+    echo "${key_value[0]}=${key_value[1]}" >> ${export_file}
+  fi
 done
 
 # cp "$PROJECT_DIR/firebase_app_id_file_${APP_FLAVOR}.json" "$PROJECT_DIR/firebase_app_id_file.json"
